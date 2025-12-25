@@ -6,3 +6,4 @@ doc/*.toc
 doc/*.fdb_latexmk
 *.log
 *.gz
+.cache/
