@@ -419,7 +419,15 @@ $$
 где $a = \left(\frac{\delta_{1}}{\Delta_{1}}\right)^{t_1}\cdot\ldots\cdot\left(\frac{\delta_{p}}{\Delta_{p}}\right)^{t_p}$. Коэффициент $a$ является целым в силу того, что суммы в скобках
 являются целыми (после введения новых коэффициентов), а также само значение функции, исходя из её определения, является целым числом.
 
-
+\begin{theorem} \label{theorem:1}
+    Пусть задана жорданова форма $J$ некоторой матрцы с одним собственным числом. Характеристическая функция для модуля $\Lambda_{J,J}$ с базисом $T_i$, $i=\overline{1,m}$
+    $f(y_1,\dots,y_m)=\det\left(\displaystyle\sum_{i=1}^{m}{y_i T_i}\right)$ представима в виде
+    \[
+       f(y_1,\dots,y_m) = a\left(\sum_{s_1,\dots,s_{k_1} = 1}^{m}{\gamma_{s_1,\dots,s_{k_1}}^{1} y_{s_1}\dots y_{s_{k_1}}}\right)^{t_1}\cdot\ldots\cdot
+    \left(\sum_{s_1,\dots,s_{k_p} = 1}^{m}{\gamma_{s_1,\dots,s_{k_p}}^{p} y_{s_1}\dots y_{s_{k_p}}}\right)^{t_p}, 
+    \]
+    где все коэффициенты $a$ и $\gamma_{s_1,\dots,s_{k_i}}^{i}$ являются целыми числами.
+\end{theorem}
 \newpage
 \begin{thebibliography}{99}
 
