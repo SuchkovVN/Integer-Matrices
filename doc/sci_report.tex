@@ -28,6 +28,16 @@ top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \def\intmat#1#2{\mathbb{Z}^{#1 \times #2}}
 \def\ratmat#1#2{\mathbb{Q}^{#1 \times #2}}
 
+\def\newsection#1{
+    \newpage
+    \section*{#1}
+    \addcontentsline{toc}{section}{#1}
+}
+\def\newsubsection#1{
+    \subsection*{#1}
+    \addcontentsline{toc}{subsection}{#1}
+}
+
 \begin{document}
 
 \begin{center}
@@ -70,19 +80,15 @@ top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \newpage
 \tableofcontents
 \thispagestyle{empty}
-\newpage
+\newsection{Введение}
 \setcounter{page}{1}
-\section*{Введение}
-\addcontentsline{toc}{section}{Введение}
 
 Пусть есть матрицы $A, B \in \intmat{n}{n}$. Множество решений уравнения $AX = XB$ над $\ratmat{n}{n}$ 
 обозначим как $M_{A,B} = \{X\in \ratmat{n}{n} |  AX = XB \}$. Тогда множество целочисленных решений есть $\Lambda_{A,B} = M_{A,B} \cap \intmat{n}{n}$.
 Суть настоящей работы заключается в изучении структуры множества $\Lambda_{A,B}$, а в особенности, его связь с множестовм $M_{J,J}$, где 
 $J$ - жорданова нормальная форма матриц $A$ и $B$.
 
-\newpage
-\section*{Свойства множества $M_{J,J}$}
-\addcontentsline{toc}{section}{Свойства множества $M_{J,J}$}
+\newsection{Свойства множества $M_{J,J}$}
 
 Опишем несколько полезных свойств матриц из $M_{A,B}$, которые окажутся полезными в дальнейшем. Пусть $J$ - рациональная жорданова нормальная форма 
 матриц $A$ и $B$ обладающих целочисленным спектром. Обозначим $S_A$ и $S_B$ соотвествующие трансформирующие матрицы над $\mathbb{Q}$, такие что $AS_A = S_AJ$ и $BS_B = S_BJ$. 
@@ -348,9 +354,71 @@ $$
 леммой \ref{lemm:1} получим, что $f(x_1, \dots, x_{m}) = (D_1(x_1, \dots x_{k_1}))^{t_1}\cdot (D_2(x_{k_1 + 1}, \dots x_{k_2}))^{t_2} \cdot \ldots \cdot (D_p(x_{k_{p - 1} + 1}, \dots x_{k_p}))^{t_p}$,
 где $k_i = \displaystyle\sum_{j = 1}^{i}m_j$, где, в свою очередь, $m_j$ порядок минора $D_j$ (количество клеток соотвествующих одному и тому же собственному числу порядка $t_j$).
 
-\newpage
-\section*{Связь множеств $M_{J,J}$ и $\Lambda_{J,J}$}
-\addcontentsline{toc}{section}{Связь множеств $M_{J,J}$ и $\Lambda_{J,J}$}
+\newsection{Связь множеств $M_{J,J}$ и $\Lambda_{J,J}$}
+\newsubsection{Случай одного собственного числа}
+
+Выберем некоторый базис $T_i$ в $\Lambda_{J,J}$. В этом базисе запишем функцию $f(y_1, \dots, y_m) = \det\left(\displaystyle\sum_{i=1}^{m}y_i T\right)$.
+Матрицы этого базиса можно выразить через базис $G_{i}$ (описанной выше структуры) в $M_{J,J}$.
+Пусть $T_i = \displaystyle\sum_{j = 1}^{m}\beta_{ij}G_j$, $\beta_{ij} \in \mathbb{Q}$, тогда функция $f(y_1, \dots, y_m)$ примет вид 
+\[
+    f(y_1, \dot, y_m) = \sum_{i = 1}^{m}{y_i \sum_{j = 1}^{m}{\beta_{ij}G_j}}
+\]
+Внося $y_i$ во внутренюю сумму и меня порядок суммирования получим
+\[
+    f(y_1, \dot, y_m) = \sum_{i = 1}^{m}{y_i \sum_{j = 1}^{m}{\beta_{ij}G_j}} = 
+    \sum_{j = 1}^{m}{\left(\sum_{i = 1}^{m}{\beta_{ij}y_i}\right)G_j}
+\]
+Введем обозначения $z_j =\displaystyle\sum_{i = 1}^{m}{\beta_{ij}y_i}$, тогда $f(z_1, \dots, z_m) = \det\left(\displaystyle\sum_{i=1}^{m}{z_iG_i}\right)$.
+
+
+В соотвествующую с леммой \ref{lemm:1} функция $f(z_1, \dots, z_m)$ примет вид
+\[
+    f(z_1, \dots, z_m) = (D_1(z_1, \dots, z_{k_1}))^{t_1}\cdot\ldots\cdot(D_{p}(z_{k_{p - 1} + 1}, \dots, z_{k_p}))^{t_p},
+\]
+где $k_i = \displaystyle\sum_{j = 1}^{i}m_j$, где, в свою очередь, $m_j$ порядок минора $D_j$.
+
+Каждый из миноров $D_i(z_{i_1}, z_{i_2}, \dots, z_{i_k})$ ($i_{s+1} = i_s + 1$) может быть записан в виде 
+\[
+    D_i(z_{i_1}, \dots, z_{i_k}) = \sum_{j_1,\dots,j_k={i_1}}^{i_k}
+    {\alpha_{j_1,\dots,j_k}}z_{j_1}\dots z_{j_k}
+\]
+Коэффициенты $\alpha_{j_1,\dots,j_k}$ принимают значения из множества $\left\{\pm1, 0\right\}$.
+Подставляя теперь вместо $z_i$ соотвествующие суммы получим
+\[
+    D_i(z_{i_1}, \dots, z_{i_k}) = \sum_{j_1,\dots,j_k={i_1}}^{i_k}
+    {\alpha_{j_1,\dots,j_k}\left(\sum_{s = 1}^{m}{\beta_{s j_1}y_{s}}\right)\cdot\ldots\cdot\left(\sum_{s = 1}^{m}{\beta_{s j_k}y_{s}}\right)} =
+\]
+\[
+    = \sum_{j_1,\dots,j_k={i_1}}^{i_k}
+    {\sum_{s_1,\dots,s_k=1}^{m}{\overline{\beta}_{s_1,\dots,s_k}^{j_1,\dots,j_k} y_{s_1}\dots y_{s_k}}} =
+    \sum_{s_1,\dots,s_k=1}^{m}{y_{s_1}\dots y_{s_k} \left(\sum_{j_1,\dots,j_k={i_1}}^{i_k}{\overline{\beta}_{s_1,\dots,s_k}^{j_1,\dots,j_k}}\right)} =
+\]
+\[
+    =\sum_{s_1,\dots,s_k=1}^{m}{\hat{\beta}_{i}^{s_1,\dots,s_k} y_{s_1}\dots y_{s_k}},
+\]
+где, в свою очередь, $\overline{\beta}_{s_1,\dots,s_k}^{j_1,\dots,j_k} = \alpha_{j_1,\dots,j_k}\beta_{s_1 j_1}\dots\beta_{s_k j_k}$
+и $\hat{\beta}_{i}^{s_1,\dots,s_k} = \displaystyle\sum_{j_1,\dots,j_k={i_1}}^{i_k}{\overline{\beta}_{s_1,\dots,s_k}^{j_1,\dots,j_k}}$ (В данном случае, в обозначении для результирующего коэффициента $\hat{\beta}_{\ast}^i$ можно 
+использовать индекс $i$, так как каждому минору $D_i$, очевидно, соотвествуют свои уникальные $i_1$ и $i_k$).
+
+В результате, функцию $f(y_1,\dots, y_m)$ можно записать как
+\[
+    f(y_1,\dots, y_m) = \left(\sum_{s_1,\dots,s_{k_1} = 1}^{m}{\hat{\beta}_{s_1,\dots,s_{k_1}}^{1} y_{s_1}\dots y_{s_{k_1}}}\right)^{t_1}\cdot\ldots\cdot
+    \left(\sum_{s_1,\dots,s_{k_p} = 1}^{m}{\hat{\beta}_{s_1,\dots,s_{k_p}}^{p} y_{s_1}\dots y_{s_{k_p}}}\right)^{t_p}
+\] 
+
+
+Теперь, отдельно рассмотрим коэффициенты $\hat{\beta}_{s_1,\dots, s_{k_i}}^{i}$.
+Обозначим $\Delta_{i}$ наименьшее общее кратное всех знаменателей коэффициентов $\hat{\beta}_{\ast}^i$ и $\delta_{i} = \underset{s_1,\dots,s_{k_i}}{\mathbf{gcd}}(\Delta_{i}\hat{\beta}_{s_1,\dots, s_{k_i}}^{i})$.
+Тогда, в каждой из скобок в выражении функции $f(y_1,\dots, y_m)$ можно вынести выражение $\frac{\delta_{i}}{\Delta_{i}}^{t_i}$ и заменить старые коэффициенты на новые $\gamma_{s_1,\dots,s_{k_i}}^{i} = \frac{\Delta_{i}\hat{\beta}_{s_1,\dots, s_{k_i}}^{i}}{\delta_{i}}$.
+Несложно заметить, что по построению новые коэффициенты являются целыми числами. Тогда функцию $f(y_1,\dots,y_m)$ можно переписать
+следующим образом
+\[
+    f(y_1,\dots,y_m) = a\left(\sum_{s_1,\dots,s_{k_1} = 1}^{m}{\gamma_{s_1,\dots,s_{k_1}}^{1} y_{s_1}\dots y_{s_{k_1}}}\right)^{t_1}\cdot\ldots\cdot
+    \left(\sum_{s_1,\dots,s_{k_p} = 1}^{m}{\gamma_{s_1,\dots,s_{k_p}}^{p} y_{s_1}\dots y_{s_{k_p}}}\right)^{t_p},
+\]
+где $a = \left(\frac{\delta_{1}}{\Delta_{1}}\right)^{t_1}\cdot\ldots\cdot\left(\frac{\delta_{p}}{\Delta_{p}}\right)^{t_p}$. Коэффициент $a$ является целым в силу того, что суммы в скобках
+являются целыми (после введения новых коэффициентов), а также само значение функции, исходя из её определения, является целым числом.
+
 
 \newpage
 \begin{thebibliography}{99}
