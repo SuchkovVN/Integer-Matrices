@@ -16,6 +16,7 @@ top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage{indentfirst}
 \usepackage[nottoc]{tocbibind}
 \usepackage{arydshln}
+\usepackage{titlesec}
 
 \captionsetup[figure]{name=Рисунок}
 
@@ -27,6 +28,9 @@ top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 
 \def\intmat#1#2{\mathbb{Z}^{#1 \times #2}}
 \def\ratmat#1#2{\mathbb{Q}^{#1 \times #2}}
+
+\titlespacing*{\subsection}
+{0pt}{2\baselineskip}{0.25\baselineskip}
 
 \def\newsection#1{
     \newpage
@@ -354,18 +358,18 @@ $$
 леммой \ref{lemm:1} получим, что $f(x_1, \dots, x_{m}) = (D_1(x_1, \dots x_{k_1}))^{t_1}\cdot (D_2(x_{k_1 + 1}, \dots x_{k_2}))^{t_2} \cdot \ldots \cdot (D_p(x_{k_{p - 1} + 1}, \dots x_{k_p}))^{t_p}$,
 где $k_i = \displaystyle\sum_{j = 1}^{i}m_j$, где, в свою очередь, $m_j$ порядок минора $D_j$ (количество клеток соотвествующих одному и тому же собственному числу порядка $t_j$).
 
-\newsection{Связь множеств $M_{J,J}$ и $\Lambda_{J,J}$}
+\newsection{Характеристическая функция для $\Lambda_{J,J}$}
 \newsubsection{Случай одного собственного числа}
 
 Выберем некоторый базис $T_i$ в $\Lambda_{J,J}$. В этом базисе запишем функцию $f(y_1, \dots, y_m) = \det\left(\displaystyle\sum_{i=1}^{m}y_i T\right)$.
 Матрицы этого базиса можно выразить через базис $G_{i}$ (описанной выше структуры) в $M_{J,J}$.
 Пусть $T_i = \displaystyle\sum_{j = 1}^{m}\beta_{ij}G_j$, $\beta_{ij} \in \mathbb{Q}$, тогда функция $f(y_1, \dots, y_m)$ примет вид 
 \[
-    f(y_1, \dot, y_m) = \sum_{i = 1}^{m}{y_i \sum_{j = 1}^{m}{\beta_{ij}G_j}}
+    f(y_1, \dots, y_m) = \sum_{i = 1}^{m}{y_i \sum_{j = 1}^{m}{\beta_{ij}G_j}}
 \]
 Внося $y_i$ во внутренюю сумму и меня порядок суммирования получим
 \[
-    f(y_1, \dot, y_m) = \sum_{i = 1}^{m}{y_i \sum_{j = 1}^{m}{\beta_{ij}G_j}} = 
+    f(y_1, \dots, y_m) = \sum_{i = 1}^{m}{y_i \sum_{j = 1}^{m}{\beta_{ij}G_j}} = 
     \sum_{j = 1}^{m}{\left(\sum_{i = 1}^{m}{\beta_{ij}y_i}\right)G_j}
 \]
 Введем обозначения $z_j =\displaystyle\sum_{i = 1}^{m}{\beta_{ij}y_i}$, тогда $f(z_1, \dots, z_m) = \det\left(\displaystyle\sum_{i=1}^{m}{z_iG_i}\right)$.
@@ -428,6 +432,38 @@ $$
     \]
     где все коэффициенты $a$ и $\gamma_{s_1,\dots,s_{k_i}}^{i}$ являются целыми числами.
 \end{theorem}
+
+\newsubsection{Случай различных собственных чисел}
+Пусть $J$ - рациональная жорданова форма и пусть среди блоков $J$ есть блоки соотвествующие различным
+собственным числам. Для каждого уникального собственного числа $\lambda_i$, $i = \overline{1,s}$ обозначим $q_i$ число жордановых клеток соотвествующих ему.
+
+Матрицы $X \in M_{J,J}$ имеют вид $X = diag\left(X_1, X_2, \dots, X_s\right)$, где каждая из матриц $X_i$ имеет вид блочной матрицы с
+правильными верхне-треугольными блоками. Определитель матрицы будет иметь вид $\det X = \det{X_1} \det{X_2} \cdot\ldots\cdot \det{X_s}$.
+Выберем в $M_{J,J}$ базис $G_i$, $i = \overline{1,m}$ следующим образом. Матрицы $G_1, \dots, G_{q_1^2}$ соотвествуют диагональным элементам
+блоков матрицы $X_1$ (Элементы $G_i$ стоящие на диагонали $i$-го блока в $X_1$ равны единице, остальные нулую. Нумерация блоков в $X_1$ совпадает с нумерацией переменных),
+матрицы $G_{q_1^2 + 1}, \dots, G_{q_1^2 + q_2^2 + 1}$ соотвествуют диагональным элементам блоков матрицы $X_2$ и так далее. При таком выборе базиса имеем
+$X_1 = \displaystyle\sum_{i=1}^{q_1^2} x_i G_i$, $X_2 = \displaystyle\sum_{i=n_1}^{n_2} x_i G_i$, $\dots$, $X_s = \displaystyle\sum_{i=n_{s-1}}^{n_s} x_i G_i$,
+где $n_{k} =1 +\displaystyle\sum_{i=1}^{k}q_i^2$. За счёт такого выбора базиса мы можем записать каждый из определителей $\det{X_i}$
+в соответсвии с леммой \ref{lemm:1}, а значит и $\det{X}$ как их произведение
+\[
+    \det{X} = \left[D_{11}^{t_{1m_1}}\cdot D_{12}^{t_{1m_2}}\cdot\ldots\cdot D_{1\beta}^{t_{1m\beta}}\right]\cdot \left[D_{21}^{t_{2m_1}}\cdot 
+    D_{22}^{t_{2m_2}}\cdot\ldots\cdot D_{2\beta}^{t_{2m\beta}}\right]\cdot\ldots\cdot \left[D_{s1}^{t_{sm_1}}\cdot\ldots\cdot D_{s\beta}^{t_{sm_\beta}}\right]
+\]
+\newpage
+Учитывая, что в каждой из скобок свой набор переменных не пересекающихся с другими, мы можем проделать те же рассуждения, что и в случае теоремы \ref{theorem:1}
+для каждого из определителя диагональных блоков $Y_{k}$ матрицы $Y \in \Lambda_{J,J}$, таким образом получая обобщение для вида $f(y_1, \dots, y_m) = \det{Y}$,
+на случай $Y = diag(Y_1, \dots, Y_s)$
+
+\[
+    f(y_1,\dots,y_m) = a\left(\sum_{s_1,\dots,s_{k_1} = 1}^{m}{\gamma_{s_1,\dots,s_{k_1}}^{11} y_{s_1}\dots y_{s_{k_1}}}\right)^{t_{11}}\cdot\ldots\cdot
+    \left(\sum_{s_1,\dots,s_{k_p} = 1}^{m}{\gamma_{s_1,\dots,s_{k_p}}^{sp} y_{s_1}\dots y_{s_{k_p}}}\right)^{t_{sp}},
+\]
+где все коэффициенты $a$ и $\gamma_{\ast}^{ij}$ целые.
+
+\newsection{Переход от $\Lambda_{J,J}$ к $\Lambda_{A,B}$}
+
+
+
 \newpage
 \begin{thebibliography}{99}
 
