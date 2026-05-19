@@ -4,6 +4,7 @@ doc/*.out
 doc/*.fls
 doc/*.toc
 doc/*.fdb_latexmk
+doc/*.bak
 *.log
 *.gz
 .cache/
